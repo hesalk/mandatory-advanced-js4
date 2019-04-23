@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import con4 from './connect4'
+//import con4 from './connect4'
 
 class App extends Component {
   
