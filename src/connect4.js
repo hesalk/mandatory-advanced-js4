@@ -1,33 +1,88 @@
 import React, { useState, useEffect,useReducer  } from "react";
 
-function testco(arr){
+let player = "red"
+function testco(array){
+    let arr = array.reverse()
     console.log(arr);
-    arr[1].props.function()
+    for (let i = 0; i < arr.length; i++) {
+        const element = arr[i];
+        console.log(element);
+        let j = i-1
+        console.log(j)
+        if(element.props.style.backgroundColor === "white"){
+            element.props.function(player)
+            player = player === "red" ? "blue" : "red";
+            console.log("player is now "+player)
+            return
+/*             if(i > 0){
+                element.props.function("blue")
+                return
+            }else{
+            element.props.function("red")
+            console.log("doo")
+            return
+        } */
+        }
+    }
     
+}
+
+function equal(element){
+    return element === "red"
+}
+
+function equalblue(element){
+    return element === "blue"
+}
+
+
+let ar = ["red","red","red","red"]
+console.log(ar.every(equal))
+function validait(array) {
+    console.log(array)
+    let colorarray = []
+    console.log(array[0].props.style.backgroundColor)
+    for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+        let color = element.props.style.backgroundColor
+        colorarray.push(color)
+    }
+    console.log(colorarray)
+    for (let j = 0; j < colorarray.length; j++) {
+        const element = colorarray[j];
+        let testarr = []
+        let testarr7 = []
+        let testarr5 = []
+        let testarr6 = []
+        testarr.push(colorarray[j],colorarray[j+1],colorarray[j+2],colorarray[j+3])
+        if(testarr.every(equal) || testarr.every(equalblue)){
+            console.log(testarr)
+            alert("shit+1")
+        }
+        testarr7.push(colorarray[j],colorarray[j+7],colorarray[j+14],colorarray[j+21])
+        if(testarr7.every(equal) || testarr7.every(equalblue)){
+            alert("shit+7")
+        }
+        testarr5.push(colorarray[j],colorarray[j+5],colorarray[j+10],colorarray[j+15])
+        if(testarr5.every(equal) || testarr5.every(equalblue)){
+            console.log(testarr5)
+            console.log(testarr5.length)
+            alert("shit+5")
+        }
+        testarr6.push(colorarray[j],colorarray[j+6],colorarray[j+12],colorarray[j+18])
+        if(testarr6.every(equal) || testarr6.every(equalblue)){
+            console.log(testarr6)
+            console.log(testarr6.length)
+            alert("shit+6")
+        }
+    }
 }
 
 
 function con4() {
+    console.log("render")
+    let row = new Array(42)
 
-    let testcolot = (array)=> {
-        for (let i = 0; i < array.length; i++) {
-            const element = array[i];
-            console.log(element.props.style.backgroundColor)
-            if(element.props.style.backgroundColor === "white"){
-                console.log("xx");
-                return "red"
-            }
-        }
-        
-    }
-    let test = (s)=>{
-        if(s === "white"){
-            return "red"
-        }
-        else{return "blue"}
-    }
-    let colstyle = {
-    }
     let con4style = {
         width:"100%",
         height:"100%",
@@ -36,32 +91,29 @@ function con4() {
         flexDirection: "column-reverse"
     }
 
-    let row = new Array(42)
-
     for (let i = 0; i < row.length; i++) {
         const [color,updatecolor] = useState("white")
         let sqrstyle = {
             width:"90px",
             height:"90px",
+            borderRadius:"45px",
             backgroundColor:"white",
             margin:"5px",
             backgroundColor:color
         }
         const element = row[i];
-        row[i]= <div key={i} function={()=>{updatecolor(test(color))}} onClick={console.log("clicked")} style={sqrstyle}></div>
+        row[i]= <div key={i} function={(x)=>{updatecolor(x)}} onClick={console.log("click")} style={sqrstyle}></div>
     }
-
-    console.log(row[1].key)
-    console.log(row)
+    validait(row)
     return(
         <div className="con4" style={con4style} >
-            <div onClick={()=>{testco(row.slice(0,6))}} style={colstyle} className="col-1">{row.slice(0,6)}</div>
-            <div onClick={()=>{}} className="col-2">{row.slice(6,12)}</div>
-            <div  className="col-3">{row.slice(12,18)}</div>
-            <div  className="col-4">{row.slice(18,24)}</div>
-            <div  className="col-5">{row.slice(24,30)}</div>
-            <div  className="col-6">{row.slice(30,36)}</div>
-            <div  className="col-7">{row.slice(36,42)}</div>
+            <div onClick={()=>{testco(row.slice(0,6))}} className="col-1">{row.slice(0,6)}</div>
+            <div onClick={()=>{testco(row.slice(6,12))}} className="col-2">{row.slice(6,12)}</div>
+            <div onClick={()=>{testco(row.slice(12,18))}} className="col-3">{row.slice(12,18)}</div>
+            <div onClick={()=>{testco(row.slice(18,24))}} className="col-4">{row.slice(18,24)}</div>
+            <div onClick={()=>{testco(row.slice(24,30))}} className="col-5">{row.slice(24,30)}</div>
+            <div onClick={()=>{testco(row.slice(30,36))}} className="col-6">{row.slice(30,36)}</div>
+            <div onClick={()=>{testco(row.slice(36,42))}} className="col-7">{row.slice(36,42)}</div>
         </div>
     )
 }
