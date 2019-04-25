@@ -8,15 +8,18 @@ class App extends Component {
   render() {
     let contstyle = {
       width:"700px",
-      height:"600px",
+      height:"800px",
       backgroundColor:"pink",
       margin:"auto",
 
     }
     return (
       <div className="App">
+              <div className="headinfo">
+            <button onClick={()=>{window.location.reload()}}>restart</button>
+        </div>
         <div className="container" style={contstyle}>
-          <Con4></Con4>
+          <Con4>{console.log()}</Con4>
         </div>
       </div>
     );
