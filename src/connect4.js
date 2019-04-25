@@ -27,11 +27,17 @@ function validait(array) {
         let testarr5 = []
         let testarr6 = []
         testarr.push(colorarray[j],colorarray[j+1],colorarray[j+2],colorarray[j+3])
+        let winarr = [j,j+1,j+2,j+3]
+        console.log(winarr)
         if(testarr.every(equal) || testarr.every(equalblue)){
             console.log(testarr)
             console.log("winner")
             //array[0].props.win(testarr[0])
-            return testarr[0]
+            let obj = {
+                arr:winarr,
+                color:testarr[0]
+            }
+            return obj
         }
         testarr7.push(colorarray[j],colorarray[j+7],colorarray[j+14],colorarray[j+21])
         if(testarr7.every(equal) || testarr7.every(equalblue)){
